@@ -52,7 +52,7 @@ brew install libxml2 xmlstarlet
 
 ## Example Output
 Found bundle: /path/to/MyProject.fcpxmld  
-Inner FCPXML: /path/to/MyProject.fcpxml  
+Inner FCPXML: /path/to/Info.fcpxml  
 Output file : /path/to/MyProject.fcpxml  
 Created: /path/to/MyProject.fcpxml
 
@@ -67,10 +67,10 @@ Output root      : <same as bundle dirs>
 ```
 Projects/
 ├── Edit01.fcpxmld/
-│   └── Edit01.fcpxml
+│   └── Info.fcpxml
 └── Subfolder/
     └── Edit02.fcpxmld/
-        └── Edit02.fcpxml
+        └── Info.fcpxml
 ```
 
 ## Error Handling
