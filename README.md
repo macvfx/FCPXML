@@ -91,4 +91,4 @@ Projects/
 - Backup: `.fcpxmld` bundles remain untouched.
 
 ### Why this exists
-Older tools, cross-platform workflows, and XML parsers often expect plain `.fcpxml` files, not Apple bundles.
+To restore files from [Archiware P5 v.8.0](archiware.com) you need a plain text formatted media list. Also, a lot of older tools, cross-platform workflows, and XML parsers often expect plain `.fcpxml` files, not Apple bundles.
