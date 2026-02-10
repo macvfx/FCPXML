@@ -2,6 +2,10 @@
 
 A Bash script to recursively find Final Cut Pro `.fcpxmld` bundles (directory packages) and extract their inner `.fcpxml` files as standalone, flattened XML files.
 
+
+### Why this exists
+To restore files from [Archiware P5 v.8.0](archiware.com) you need a plain text formatted media list. Also, a lot of cross-platform workflows, and XML parsers, often expect plain `.fcpxml` files, not Apple bundles.
+
 ## What it Does
 Final Cut Pro 10.4+ exports projects as `.fcpxmld` bundles containing:
 - A main `Info.plist`
@@ -89,6 +93,3 @@ Projects/
 - Dry run: Comment out the `xmllint/cp` line to preview.
 - Test first: Run on a small folder to verify behavior.
 - Backup: `.fcpxmld` bundles remain untouched.
-
-### Why this exists
-To restore files from [Archiware P5 v.8.0](archiware.com) you need a plain text formatted media list. Also, a lot of older tools, cross-platform workflows, and XML parsers often expect plain `.fcpxml` files, not Apple bundles.
