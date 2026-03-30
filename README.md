@@ -20,22 +20,22 @@ This script:
 
 ## In-place conversion (writes fcpxml next to each fcpxmld bundle)
 ```bash
-./flatten_fcpxmld.sh "/path/to/search"
+./FCPXMLD-to-XML.sh "/path/to/search"
 ```
 
 ## To separate output directory (mirrors folder structure)
 ```bash
-./flatten_fcpxmld.sh "/path/to/search" "/path/to/output"
+./FCPXMLD-to-XML.sh "/path/to/search" "/path/to/output"
 ```
 
 ## Convert everything under Projects folder
 ```bash
-./flatten_fcpxmld.sh "/Volumes/Projects"
+./FCPXMLD-to-XML.sh "/Volumes/Projects"
 ```
 
 ## Convert to clean output tree
 ```bash
-./flatten_fcpxmld.sh "/Volumes/Projects" "/Volumes/Projects_XML"
+./FCPXMLD-to-XML.sh "/Volumes/Projects" "/Volumes/Projects_XML"
 ```
 
 ### Features
@@ -84,12 +84,12 @@ Projects/
 - Missing output root dir → Auto-creates directories.
 
 ### Save & Run
-1. Save as `flatten_fcpxmld.sh`.
-2. `chmod +x flatten_fcpxmld.sh`.
-3. `./flatten_fcpxmld.sh /your/path`.
+1. Save as `FCPXMLD-to-XML.sh`.
+2. `chmod +x FCPXMLD-to-XML.sh`.
+3. `./FCPXMLD-to-XML.sh /your/path`.
 
 ## Pro Tips
-- Log to file: `./flatten_fcpxmld.sh /path | tee conversion.log`
+- Log to file: `./FCPXMLD-to-XML.sh /path | tee conversion.log`
 - Dry run: Comment out the `xmllint/cp` line to preview.
 - Test first: Run on a small folder to verify behavior.
 - Backup: `.fcpxmld` bundles remain untouched.
