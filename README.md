@@ -1,41 +1,68 @@
-# FCPXMLD to FCPXML Converter
+# FCPXMLD ⇄ FCPXML — Tools
 
-A Bash script to recursively find Final Cut Pro `.fcpxmld` bundles (directory packages) and extract their inner `.fcpxml` files as standalone, flattened XML files.
+Command-line scripts **and** a macOS drag-and-drop app for working with Final Cut Pro
+`.fcpxmld` bundles and their inner `.fcpxml` files.
 
+| Tool | What it does |
+|---|---|
+| FCPXMLD Conversion app | Native macOS SwiftUI app: drag-and-drop `.fcpxmld` conversion, library FCPXML capture, and Excel/PDF reporting. [See **APP.md**](APP.md). |
+| `find-all-FCPXMLD-convert-count-move.sh` | Recursive batch converter — finds every `.fcpxmld` under a folder and produces renamed `.fcpxml` output (in a `Save in Place` or `Save to Destination` mirror). |
+| `FCPXMLD-to-XML.sh` | Single-bundle converter — flattens one `.fcpxmld` to a standalone `.fcpxml` next to it. |
 
-### Why this exists
-To restore files from [Archiware P5 v.8.0](archiware.com) you need a plain text formatted media list. Also, a lot of cross-platform workflows, and XML parsers, often expect plain `.fcpxml` files, not Apple bundles.
+---
 
-## What it Does
+## The macOS App
+
+Prefer a GUI? Download the latest signed **FCPXMLD Conversion** app from
+[Releases](https://github.com/macvfx/FCPXML/releases) (`.dmg`).
+
+Full feature list, build instructions, and usage: [`APP.md`](APP.md).
+
+---
+
+## Why this exists
+
+To restore files from [Archiware P5 v.8.0](archiware.com) you need a plain text
+formatted media list. Also, a lot of cross-platform workflows and XML parsers often
+expect plain `.fcpxml` files, not Apple bundles.
+
+## What the scripts do
+
 Final Cut Pro 10.4+ exports projects as `.fcpxmld` bundles containing:
+
 - A main `Info.plist`
 - One primary `.fcpxml` text file
 - Optional sidecar files (missing media reports, etc.)
 
-This script:
-1. Recursively scans a directory tree for all `.fcpxmld` bundles.
-2. For each bundle, locates the inner `.fcpxml` file.
-3. Formats it (using `xmllint` or `xmlstarlet` if available) or copies as-is.
-4. Writes `ProjectName.fcpxml` either in-place (next to each bundle) or to a separate output directory (mirroring the folder structure).
+The scripts:
+
+1. Recursively scan a directory tree for all `.fcpxmld` bundles.
+2. For each bundle, locate the inner `.fcpxml` file.
+3. Format it (using `xmllint` or `xmlstarlet` if available) or copy it as-is.
+4. Write `ProjectName.fcpxml` either in place (next to each bundle) or to a separate output directory (mirroring the folder structure).
+
+---
+
+## Batch conversion (`find-all-FCPXMLD-convert-count-move.sh`)
 
 ## In-place conversion (writes fcpxml next to each fcpxmld bundle)
 ```bash
-./FCPXMLD-to-XML.sh "/path/to/search"
+./find-all-FCPXMLD-convert-count-move.sh "/path/to/search"
 ```
 
 ## To separate output directory (mirrors folder structure)
 ```bash
-./FCPXMLD-to-XML.sh "/path/to/search" "/path/to/output"
+./find-all-FCPXMLD-convert-count-move.sh "/path/to/search" "/path/to/output"
 ```
 
 ## Convert everything under Projects folder
 ```bash
-./FCPXMLD-to-XML.sh "/Volumes/Projects"
+./find-all-FCPXMLD-convert-count-move.sh "/Volumes/Projects"
 ```
 
 ## Convert to clean output tree
 ```bash
-./FCPXMLD-to-XML.sh "/Volumes/Projects" "/Volumes/Projects_XML"
+./find-all-FCPXMLD-convert-count-move.sh "/Volumes/Projects" "/Volumes/Projects_XML"
 ```
 
 ### Features
@@ -43,8 +70,20 @@ This script:
 - **✅ Safe**: Skips invalid bundles, logs errors, verifies output files exist.
 - **✅ Flexible output**: In-place or mirrored directory structure.
 - **✅ Pretty formatting**: Uses `xmllint --format` or `xmlstarlet fo` when available.
-- **✅ Progress logging**: Shows each conversion + final totals.
+- **✅ Progress logging**: Shows each conversion + final totals (bundles found, converted, XML files created).
 - **✅ macOS native**: Works with built-in tools + optional Homebrew helpers.
+
+---
+
+## Single conversion (`FCPXMLD-to-XML.sh`)
+
+Convert one bundle:
+```bash
+./FCPXMLD-to-XML.sh "/path/to/MyProject.fcpxmld"
+```
+Writes a flattened `MyProject.fcpxml` next to the bundle.
+
+---
 
 ### Prerequisites
 Required: None (just Bash)
@@ -84,12 +123,12 @@ Projects/
 - Missing output root dir → Auto-creates directories.
 
 ### Save & Run
-1. Save as `FCPXMLD-to-XML.sh`.
-2. `chmod +x FCPXMLD-to-XML.sh`.
-3. `./FCPXMLD-to-XML.sh /your/path`.
+1. Save the script (e.g. `find-all-FCPXMLD-convert-count-move.sh`).
+2. `chmod +x find-all-FCPXMLD-convert-count-move.sh`.
+3. `./find-all-FCPXMLD-convert-count-move.sh /your/path`.
 
 ## Pro Tips
-- Log to file: `./FCPXMLD-to-XML.sh /path | tee conversion.log`
+- Log to file: `./find-all-FCPXMLD-convert-count-move.sh /path | tee conversion.log`
 - Dry run: Comment out the `xmllint/cp` line to preview.
 - Test first: Run on a small folder to verify behavior.
 - Backup: `.fcpxmld` bundles remain untouched.
