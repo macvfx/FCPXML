@@ -8,6 +8,7 @@ Command-line scripts **and** a macOS drag-and-drop app for working with Final Cu
 | FCP Reports app | Native macOS SwiftUI app: library FCPXML capture, Excel/PDF reporting, and drag-and-drop `.fcpxmld` conversion. [See **APP.md**](APP.md). |
 | `find-all-FCPXMLD-convert-count-move.sh` | Recursive batch converter — finds every `.fcpxmld` under a folder and produces renamed `.fcpxml` output (in a `Save in Place` or `Save to Destination` mirror). |
 | `FCPXMLD-to-XML.sh` | Single-bundle converter — flattens one `.fcpxmld` to a standalone `.fcpxml` next to it. |
+| `openfcpxml-report.sh` | Excel/PDF report generator — builds a role-inventory + media-summary workbook from a `.fcpxml` or `.fcpxmld` via [OpenFCPXMLKit-CLI](https://github.com/TheAcharya/OpenFCPXMLKit#cli). |
 
 ---
 
@@ -75,9 +76,33 @@ The scripts:
 
 ---
 
-## Single conversion (`FCPXMLD-to-XML.sh`)
+## Excel/PDF reports (`openfcpxml-report.sh`)
 
-Convert one bundle:
+Requires the [OpenFCPXMLKit-CLI](https://github.com/TheAcharya/OpenFCPXMLKit#cli) binary
+(from Homebrew, the installer pkg, or a portable release).
+
+Build an Excel report from a `.fcpxml` file or a `.fcpxmld` bundle:
+```bash
+./openfcpxml-report.sh "/path/to/MyProject.fcpxmld" "/path/to/output"
+```
+Also write a PDF report alongside the workbook:
+```bash
+./openfcpxml-report.sh "/path/to/MyProject.fcpxmld" "/path/to/output" --pdf
+```
+Include every optional report sheet (markers, keywords, titles, transitions, effects, summary, …):
+```bash
+./openfcpxml-report.sh "/path/to/MyProject.fcpxml" "/path/to/output" --pdf --full
+```
+By default the workbook contains the Role Inventory and Media Summary sheets, with
+separate Missing Original / Missing Proxy columns. Reports are named after the
+timeline (e.g. `MyProject.xlsx`).
+
+The CLI is resolved from `$OPENFCPXMLKIT_CLI`, `PATH`, or `/usr/local/bin` — set
+`OPENFCPXMLKIT_CLI` to point at a specific binary if it is installed elsewhere.
+
+---
+
+## Single conversion (`FCPXMLD-to-XML.sh`)
 ```bash
 ./FCPXMLD-to-XML.sh "/path/to/MyProject.fcpxmld"
 ```
