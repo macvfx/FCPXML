@@ -1,20 +1,23 @@
-# FCPXMLD Conversion — macOS App
+# FCP Reports — macOS App
 
-A native macOS (SwiftUI) utility for Final Cut Pro XML work, with three tabs:
+A native macOS (SwiftUI) utility for Final Cut Pro XML work, with four tabs:
 
 1. **Library Capture** — pull the entire FCPXML description of a Final Cut library
-   straight from the Final Cut sidebar.
-2. **FCPXMLD Conversion** — drag-and-drop batch conversion of `.fcpxmld` bundles to
+   straight from the Final Cut sidebar, archiving it as evidence and optionally
+   building reports from it.
+2. **FCP Reports** — export OpenFCPXMLKit report workbooks and PDFs from
+   `.fcpxml` files or `.fcpxmld` bundles using your own custom report selections.
+3. **Convert FCPXMLD** — drag-and-drop batch conversion of `.fcpxmld` bundles to
    standalone `.fcpxml` files.
-3. **Excel / PDF Reports** — export OpenFCPXMLKit report workbooks and PDFs from
-   `.fcpxml` files or `.fcpxmld` bundles.
+4. **Settings** — global output locations (Save in Place / Save to Destination),
+   report defaults for Library Capture auto-reports, and about information.
 
 > **Requirements:** macOS 26+, Apple Silicon or Intel (universal workspace supported
 > via Xcode 26 / Swift 6.3). OpenFCPXMLKit 3.3.4 requires macOS 26.
 
 ## Download
 
-Grab the latest **FCPXMLD Conversion** `.dmg` from
+Grab the latest **FCP Reports** `.dmg` from
 [Releases](https://github.com/macvfx/FCPXML/releases). The app is built from the
 private source repo `macvfx/FCPXMLDConversion`.
 
@@ -37,24 +40,19 @@ pasteboard mechanism.
 For repeatable testing you can also drop a `.fcpxml` file or `.fcpxmld` bundle from
 Finder instead of a Final Cut library.
 
-## FCPXMLD Conversion tab
+**Output & Reports** (in the tab, or in Settings):
+- Captures go to every output location enabled in **Settings** — Save in Place
+  writes next to the library bundle, Save to Destination writes to the chosen
+  folder.
+- **Build reports after FCPXML created** (on by default) builds reports beside the
+  capture evidence using the report selections in **Settings → Report Defaults**;
+  changes there apply to future captures.
 
-Drop one or more folders or `.fcpxmld` bundles. The app runs the bundled
-`find-all-FCPXMLD-convert-count-move.sh` script to find every `.fcpxmld` and produce
-a renamed `.fcpxml` output.
-
-Output modes:
-- **Save in Place** — writes `Name.fcpxml` next to each found bundle.
-- **Save to Destination** — mirrors the relative paths into a chosen output folder.
-
-Formatting uses `xmllint` if available, then `xmlstarlet`, otherwise a raw copy
-fallback (same behaviour as the command-line scripts). Results stream into a live
-in-app log.
-
-## Excel / PDF Reports tab
+## FCP Reports tab
 
 Drop `.fcpxml` files or `.fcpxmld` bundles and export reports built with
-OpenFCPXMLKit:
+OpenFCPXMLKit. This tab is **independent** of the Library Capture defaults — build
+custom reports on your own selections:
 
 - **Formats** — Excel workbook (`.xlsx`), PDF (`.pdf`), or both.
 - **Sections** — role inventory, markers, keywords, titles & generators, transitions,
@@ -67,6 +65,32 @@ OpenFCPXMLKit:
   attribution label, and a project-name filter.
 - **Naming** — output files are named `{project-or-clip-name}.xlsx` / `.pdf`.
   **Reveal Report in Finder** reveals the latest outputs.
+- Reports are written to every output location enabled in Settings.
+
+## Convert FCPXMLD tab
+
+Drop one or more folders or `.fcpxmld` bundles. The app runs the bundled
+`find-all-FCPXMLD-convert-count-move.sh` script to find every `.fcpxmld` and produce
+a renamed `.fcpxml` output, written to every output location enabled in Settings.
+
+Formatting uses `xmllint` if available, then `xmlstarlet`, otherwise a raw copy
+fallback (same behaviour as the command-line scripts). Results stream into a live
+in-app log.
+
+## Settings tab
+
+- **Output locations** — global **Save in Place** and **Save to Destination**
+  toggles, persisted across launches. Every tab writes to every enabled location;
+  both can be on at once:
+  - Save in Place — beside each input file/bundle, or next to the Final Cut library
+    bundle for captures.
+  - Save to Destination — the global default output folder (a `FCP Reports` folder
+    in Documents by default).
+  If neither is enabled, the tabs refuse to run until one is turned on.
+- **Report Defaults** — the report sections, format, and options (with Select All /
+  Deselect All) that control the auto-reports built by Library Capture. All sections
+  are on by default.
+- **About FCP Reports** — attribution to code.matx.ca and the OpenFCPXMLKit library.
 
 ## Build from source
 
@@ -77,11 +101,11 @@ The project is a Swift package plus an Xcode app project.
 swift build
 
 # Xcode
-open FCPXMLDDragConvertApp.xcodeproj   # select the FCPXMLDDragConvertApp scheme, Run
+open FCPReports.xcodeproj   # select the FCPReportsApp scheme, Run
 
 # xcodebuild
-xcodebuild -project "FCPXMLDDragConvertApp.xcodeproj" \
-  -scheme "FCPXMLDDragConvertApp" \
+xcodebuild -project "FCPReports.xcodeproj" \
+  -scheme "FCPReportsApp" \
   -configuration Debug \
   -derivedDataPath "./DerivedData" \
   CODE_SIGNING_ALLOWED=NO build
@@ -100,3 +124,4 @@ installs anything automatically and sends no information about your Mac.
 
 - The bundled conversion script is included in the app at runtime.
 - Everything builds against macOS 26 SDK; the binary targets macOS 26+.
+- Bundle identifier: `com.macvfx.FCPReportsApp`.

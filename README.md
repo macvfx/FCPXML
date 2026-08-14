@@ -5,7 +5,7 @@ Command-line scripts **and** a macOS drag-and-drop app for working with Final Cu
 
 | Tool | What it does |
 |---|---|
-| FCPXMLD Conversion app | Native macOS SwiftUI app: drag-and-drop `.fcpxmld` conversion, library FCPXML capture, and Excel/PDF reporting. [See **APP.md**](APP.md). |
+| FCP Reports app | Native macOS SwiftUI app: library FCPXML capture, Excel/PDF reporting, and drag-and-drop `.fcpxmld` conversion. [See **APP.md**](APP.md). |
 | `find-all-FCPXMLD-convert-count-move.sh` | Recursive batch converter — finds every `.fcpxmld` under a folder and produces renamed `.fcpxml` output (in a `Save in Place` or `Save to Destination` mirror). |
 | `FCPXMLD-to-XML.sh` | Single-bundle converter — flattens one `.fcpxmld` to a standalone `.fcpxml` next to it. |
 
@@ -13,7 +13,7 @@ Command-line scripts **and** a macOS drag-and-drop app for working with Final Cu
 
 ## The macOS App
 
-Prefer a GUI? Download the latest signed **FCPXMLD Conversion** app from
+Prefer a GUI? Download the latest signed **FCP Reports** app from
 [Releases](https://github.com/macvfx/FCPXML/releases) (`.dmg`).
 
 Full feature list, build instructions, and usage: [`APP.md`](APP.md).
