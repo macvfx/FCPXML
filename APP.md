@@ -13,7 +13,7 @@ A native macOS (SwiftUI) utility for Final Cut Pro XML work, with four tabs:
    report defaults for Library Capture auto-reports, and about information.
 
 > **Requirements:** macOS 26+, Apple Silicon or Intel (universal workspace supported
-> via Xcode 26 / Swift 6.3). OpenFCPXMLKit 3.3.4 requires macOS 26.
+> via Xcode 26 / Swift 6.3). OpenFCPXMLKit 3.3.6 requires macOS 26.
 
 ## Download
 
@@ -58,6 +58,11 @@ custom reports on your own selections:
 - **Sections** — role inventory, markers, keywords, titles & generators, transitions,
   non-standard effects & templates, video/audio effects, speed-change effects,
   summary, and media summary.
+- **Role Inventory screenshots** — a **Role Screenshots** toggle adds a **Screenshot**
+  column after **Row** on the Role Inventory Excel report, embedding a **Source In**
+  frame grab. Original media is preferred; proxy media is used only when the original
+  is missing or unreadable (MXF, camera RAW). PDF output omits the column; missing
+  media leaves a blank cell.
 - **Media Summary** — optionally split into separate *Missing Original* / *Missing
   Proxy* columns.
 - **Options** — timecode format (SMPTE `HH:MM:SS:FF`, Frames, Feet+Frames,
@@ -111,7 +116,7 @@ xcodebuild -project "FCPReports.xcodeproj" \
   CODE_SIGNING_ALLOWED=NO build
 ```
 
-Dependencies: [OpenFCPXMLKit](https://github.com/TheAcharya/OpenFCPXMLKit) 3.3.4 and
+Dependencies: [OpenFCPXMLKit](https://github.com/TheAcharya/OpenFCPXMLKit) 3.3.6 and
 [GitHubUpdateChecker](https://github.com/macvfx/GitHubUpdateChecker).
 
 ## Update checks
