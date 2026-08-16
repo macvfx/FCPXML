@@ -84,8 +84,9 @@ Drop one or more folders or `.fcpxmld` bundles. The app runs the bundled
 a renamed `.fcpxml` output, written to every output location enabled in Settings.
 
 Formatting uses `xmllint` if available, then `xmlstarlet`, otherwise a raw copy
-fallback (same behaviour as the command-line scripts). Conversion output streams
-inline in the drop zone under the path list.
+fallback (same behaviour as the command-line scripts). The drop zone is a fixed
+height — the "Drop FCPXMLD here" prompt, the path list, and the inline conversion
+status all share the same panel, so it never resizes.
 
 ## Settings tab
 
