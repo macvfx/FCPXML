@@ -47,6 +47,9 @@ Finder instead of a Final Cut library.
 - **Build reports after FCPXML created** (on by default) builds reports beside the
   capture evidence using the report selections in **Settings → Report Defaults**;
   changes there apply to future captures.
+- **Status in the drop zone** — capture and validation progress streams inline in
+  the drop zone (a checkmark icon on success); result details (event/project
+  counts, SHA-256, evidence path) and the Reveal buttons sit below it.
 
 ## FCP Reports tab
 
@@ -70,6 +73,8 @@ custom reports on your own selections:
   attribution label, and a project-name filter.
 - **Naming** — output files are named `{project-or-clip-name}.xlsx` / `.pdf`.
   **Reveal Report in Finder** reveals the latest outputs.
+- **Status in the drop zone** — report progress appears inline under the path
+  list (orange while running, grey when done); there is no separate log box.
 - Reports are written to every output location enabled in Settings.
 
 ## Convert FCPXMLD tab
@@ -79,8 +84,8 @@ Drop one or more folders or `.fcpxmld` bundles. The app runs the bundled
 a renamed `.fcpxml` output, written to every output location enabled in Settings.
 
 Formatting uses `xmllint` if available, then `xmlstarlet`, otherwise a raw copy
-fallback (same behaviour as the command-line scripts). Results stream into a live
-in-app log.
+fallback (same behaviour as the command-line scripts). Conversion output streams
+inline in the drop zone under the path list.
 
 ## Settings tab
 
