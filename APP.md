@@ -13,13 +13,15 @@ A native macOS (SwiftUI) utility for Final Cut Pro XML work, with four tabs:
    report defaults for Library Capture auto-reports, and about information.
 
 > **Requirements:** macOS 26+, Apple Silicon or Intel (universal workspace supported
-> via Xcode 26 / Swift 6.3). OpenFCPXMLKit 3.3.6 requires macOS 26.
+> via Xcode 26 / Swift 6.3). OpenFCPXMLKit 3.3.13 requires macOS 26.
 
 ## Download
 
 Grab the latest **FCP Reports** `.dmg` from
 [Releases](https://github.com/macvfx/FCPXML/releases). The app is built from the
 private source repo `macvfx/FCPXMLDConversion`.
+
+Current release: **FCP Reports 1.6.1 (build 15)**.
 
 ## Library Capture tab
 
@@ -76,6 +78,10 @@ custom reports on your own selections:
 - **Status in the drop zone** — report progress appears inline under the path
   list (orange while running, grey when done); there is no separate log box.
 - Reports are written to every output location enabled in Settings.
+- **OpenFCPXMLKit 3.3.13 reporting update** — large FCPXML reports use less memory
+  and avoid stalls while loading roles or projecting timelines. Retimed usages,
+  source durations, secondary-storyline roles, multicam inventory rows, Inspector
+  position units, and duplicate-frame ranges are reported more accurately.
 
 ## Convert FCPXMLD tab
 
@@ -122,7 +128,7 @@ xcodebuild -project "FCPReports.xcodeproj" \
   CODE_SIGNING_ALLOWED=NO build
 ```
 
-Dependencies: [OpenFCPXMLKit](https://github.com/TheAcharya/OpenFCPXMLKit) 3.3.6 and
+Dependencies: [OpenFCPXMLKit](https://github.com/TheAcharya/OpenFCPXMLKit) 3.3.13 and
 [GitHubUpdateChecker](https://github.com/macvfx/GitHubUpdateChecker).
 
 ## Update checks
