@@ -157,3 +157,9 @@ Projects/
 - Dry run: Comment out the `xmllint/cp` line to preview.
 - Test first: Run on a small folder to verify behavior.
 - Backup: `.fcpxmld` bundles remain untouched.
+
+## License
+
+Free to use for your own business or work, including on client jobs. You may not sell,
+redistribute or sublicense the software. The terms are the
+[PolyForm Internal Use License 1.0.0](LICENSE).
