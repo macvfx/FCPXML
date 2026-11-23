@@ -5,7 +5,7 @@ Command-line scripts **and** a macOS drag-and-drop app for working with Final Cu
 
 | Tool | What it does |
 |---|---|
-| FCP Reports app | Native macOS SwiftUI app: library FCPXML capture, Excel/PDF reporting, and drag-and-drop `.fcpxmld` conversion. [See **APP.md**](APP.md). |
+| FCP Reports app | Native macOS SwiftUI app: library FCPXML capture, Excel/PDF reporting, drag-and-drop `.fcpxmld` conversion, and optional Final Cut Pro 13 library inventory. [See **APP.md**](APP.md). |
 | `find-all-FCPXMLD-convert-count-move.sh` | Recursive batch converter — finds every `.fcpxmld` under a folder and produces renamed `.fcpxml` output (in a `Save in Place` or `Save to Destination` mirror). |
 | `FCPXMLD-to-XML.sh` | Single-bundle converter — flattens one `.fcpxmld` to a standalone `.fcpxml` next to it. |
 | `openfcpxml-report.sh` | Excel/PDF report generator — builds a role-inventory + media-summary workbook from a `.fcpxml` or `.fcpxmld` via [OpenFCPXMLKit-CLI](https://github.com/TheAcharya/OpenFCPXMLKit#cli). |
@@ -23,7 +23,7 @@ Full feature list, build instructions, and usage: [`APP.md`](APP.md).
 
 ## Why this exists
 
-To restore files from [Archiware P5 v.8.0](archiware.com) you need a plain text
+To restore files from [Archiware P5 v.8.0](https://www.archiware.com) you need a plain text
 formatted media list. Also, a lot of cross-platform workflows and XML parsers often
 expect plain `.fcpxml` files, not Apple bundles.
 

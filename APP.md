@@ -1,6 +1,6 @@
 # FCP Reports — macOS App
 
-A native macOS (SwiftUI) utility for Final Cut Pro XML work, with four tabs:
+A native macOS (SwiftUI) utility for Final Cut Pro XML work, with five tabs:
 
 1. **Library Capture** — pull the entire FCPXML description of a Final Cut library
    straight from the Final Cut sidebar, archiving it as evidence and optionally
@@ -10,10 +10,14 @@ A native macOS (SwiftUI) utility for Final Cut Pro XML work, with four tabs:
 3. **Convert FCPXMLD** — drag-and-drop batch conversion of `.fcpxmld` bundles to
    standalone `.fcpxml` files.
 4. **Settings** — global output locations (Save in Place / Save to Destination),
-   report defaults for Library Capture auto-reports, and about information.
+   report defaults for Library Capture auto-reports, and optional Final Cut Pro
+   command-line integration.
+5. **About** — app version/build, project website, and OpenFCPXMLKit attribution.
 
 > **Requirements:** macOS 26+, Apple Silicon or Intel (universal workspace supported
-> via Xcode 26 / Swift 6.3). OpenFCPXMLKit 3.3.13 requires macOS 26.
+> via Xcode 26 / Swift 6.3). Final Cut Pro 13 or newer is optional and is required
+> only for library inventory, compatibility assessment, update-copy, and FCPXML
+> compatibility-export features.
 
 ## Download
 
@@ -21,7 +25,7 @@ Grab the latest **FCP Reports** `.dmg` from
 [Releases](https://github.com/macvfx/FCPXML/releases). The app is built from the
 private source repo `macvfx/FCPXMLDConversion`.
 
-Current release: **FCP Reports 1.6.1 (build 15)**.
+Current release: **FCP Reports 1.7.4 (build 22)**.
 
 ## Library Capture tab
 
@@ -78,7 +82,7 @@ custom reports on your own selections:
 - **Status in the drop zone** — report progress appears inline under the path
   list (orange while running, grey when done); there is no separate log box.
 - Reports are written to every output location enabled in Settings.
-- **OpenFCPXMLKit 3.3.13 reporting update** — large FCPXML reports use less memory
+- **OpenFCPXMLKit 3.4.1 reporting update** — large FCPXML reports use less memory
   and avoid stalls while loading roles or projecting timelines. Retimed usages,
   source durations, secondary-storyline roles, multicam inventory rows, Inspector
   position units, and duplicate-frame ranges are reported more accurately.
@@ -107,7 +111,36 @@ status all share the same panel, so it never resizes.
 - **Report Defaults** — the report sections, format, and options (with Select All /
   Deselect All) that control the auto-reports built by Library Capture. All sections
   are on by default.
-- **About FCP Reports** — attribution to code.matx.ca and the OpenFCPXMLKit library.
+- **Final Cut Pro command-line tools** — optional integration with the `fcptool`
+  bundled with Final Cut Pro 13 or newer. Turning it off leaves capture, reporting,
+  and conversion available.
+
+## Final Cut Library Inventory
+
+Choose **Tools → Scan Storage for Final Cut Libraries…** to scan a local folder,
+mounted volume, or mounted NAS share for `.fcpbundle` packages. Discovery stops at
+each library package and does not recursively inspect package contents.
+
+- The startup progress panel explains while Final Cut Pro tools are loading; the
+  folder picker becomes a prominent blue action when detection completes.
+- Results show the exact Final Cut Pro version/build used for assessment, library
+  catalog compatibility, event/clip/timeline counts when reported, and inspection
+  status.
+- Multi-select supports **Select All**, **Select Requires Update**, backups, and
+  updated working copies. Update-copy always duplicates first and never passes a
+  source library to the update command.
+- Compatible libraries can export Automatic, FCPXML 1.15, 1.14, or 1.13 when the
+  installed Final Cut Pro advertises that version. Exports include checksums and
+  validation evidence.
+- NAS capacity reported as zero through unsupported macOS volume keys is treated as
+  unknown instead of incorrectly blocking the copy as a full destination.
+
+## About tab and Help
+
+The rightmost **About** tab shows the exact version/build, project link, copyright,
+and OpenFCPXMLKit attribution. The standard macOS About window remains available.
+The Help menu opens a resizable, scrollable workflow guide whose descriptions wrap
+instead of being truncated.
 
 ## Build from source
 
@@ -128,7 +161,7 @@ xcodebuild -project "FCPReports.xcodeproj" \
   CODE_SIGNING_ALLOWED=NO build
 ```
 
-Dependencies: [OpenFCPXMLKit](https://github.com/TheAcharya/OpenFCPXMLKit) 3.3.13 and
+Dependencies: [OpenFCPXMLKit](https://github.com/TheAcharya/OpenFCPXMLKit) 3.4.1 and
 [GitHubUpdateChecker](https://github.com/macvfx/GitHubUpdateChecker).
 
 ## Update checks
